@@ -8,10 +8,9 @@ package com.blackzig.defenseagainstrest.recurso;
 import com.blackzig.defenseagainstrest.DAO.PedidoDAO;
 import com.blackzig.defenseagainstrest.modelo.Pedido;
 import com.google.gson.Gson;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.inject.Inject;
 import javax.ws.rs.Consumes;
+import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
@@ -45,6 +44,11 @@ public class PedidoRecurso {
         }
 
         return null;
+    }
+    
+    @GET
+    public String teste(){
+        return "OK";
     }
 
 }
