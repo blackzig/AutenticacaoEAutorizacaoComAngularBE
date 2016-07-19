@@ -14,7 +14,17 @@
         <servlet-name>Jersey REST Service</servlet-name>
         <url-pattern>/*</url-pattern>
     </servlet-mapping>
-        <security-constraint>
+    
+  <filter>
+    <filter-name>AuthenticationFilter</filter-name>
+    <filter-class>com.blackzig.defenseagainstrest.seguranca.RestAuthenticationFilter</filter-class>
+  </filter>
+  <filter-mapping>
+  <filter-name>AuthenticationFilter</filter-name>
+    <url-pattern>/*</url-pattern>
+  </filter-mapping>
+    
+    <security-constraint>
         <web-resource-collection>
             <web-resource-name>Teste de Segurança</web-resource-name>
             <url-pattern>/*</url-pattern>
@@ -25,6 +35,8 @@
             <transport-guarantee>CONFIDENTIAL</transport-guarantee>
         </user-data-constraint>
     </security-constraint>
+    
+    
     <!-- <filter>
         <filter-name>AuthenticationFilter</filter-name>
         <filter-class>br.com.backendegressos.autenticacao.RestAuthenticationFilter</filter-class>
