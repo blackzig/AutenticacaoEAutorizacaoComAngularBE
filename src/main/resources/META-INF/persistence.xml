@@ -6,6 +6,10 @@
         <class>com.blackzig.defenseagainstrest.modelo.Pedido</class>
         <class>com.blackzig.defenseagainstrest.modelo.Produto</class>
         <class>com.blackzig.defenseagainstrest.modelo.PedidoProduto</class>
+        <class>com.blackzig.defenseagainstrest.modelo.PapelUsuario</class>
+        <class>com.blackzig.defenseagainstrest.modelo.Usuario</class>
+        <class>com.blackzig.defenseagainstrest.modelo.Acesso</class>
+        
         <properties>
             <property name="javax.persistence.jdbc.url" value="jdbc:postgresql://localhost:5432/teste"/>
             <property name="javax.persistence.jdbc.user" value="postgres"/>

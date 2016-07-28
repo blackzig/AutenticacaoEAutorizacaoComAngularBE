@@ -5,8 +5,8 @@
  */
 package com.blackzig.defenseagainstrest.DAO;
 
-import com.blackzig.defenseagainstrest.jpa.Transactional;
-import com.blackzig.defenseagainstrest.modelo.Pedido;
+import com.blackzig.defenseagainstrest.modelo.Produto;
+import java.util.List;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
 
@@ -14,13 +14,12 @@ import javax.persistence.EntityManager;
  *
  * @author Michel
  */
-public class PedidoDAO {
+public class ProdutoDAO {
+
     @Inject
     private EntityManager em;
-    
-    @Transactional
-    public Pedido salvar(Pedido pedido) {
-        em.merge(pedido);
-        return pedido;
-    }    
+
+    public List<Produto> buscarTodos() {
+        return em.createQuery("SELECT p FROM Produto p").getResultList();
+    }
 }

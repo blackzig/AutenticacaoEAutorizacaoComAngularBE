@@ -15,6 +15,15 @@
         <url-pattern>/*</url-pattern>
     </servlet-mapping>
     
+    <filter>
+        <filter-name>AuthenticationFilter</filter-name>
+        <filter-class>com.blackzig.defenseagainstrest.autenticacao.RestAuthenticationFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>AuthenticationFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+  <!--   
   <filter>
     <filter-name>AuthenticationFilter</filter-name>
     <filter-class>com.blackzig.defenseagainstrest.seguranca.RestAuthenticationFilter</filter-class>
@@ -37,7 +46,7 @@
     </security-constraint>
     
     
-    <!-- <filter>
+    <filter>
         <filter-name>AuthenticationFilter</filter-name>
         <filter-class>br.com.backendegressos.autenticacao.RestAuthenticationFilter</filter-class>
     </filter>

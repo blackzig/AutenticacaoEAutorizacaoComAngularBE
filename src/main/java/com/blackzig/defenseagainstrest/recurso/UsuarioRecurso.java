@@ -5,6 +5,11 @@
  */
 package com.blackzig.defenseagainstrest.recurso;
 
+import com.blackzig.defenseagainstrest.DAO.UsuarioDAO;
+import com.blackzig.defenseagainstrest.DO.DadosUsuario;
+import com.blackzig.defenseagainstrest.modelo.Usuario;
+import com.blackzig.defenseagainstrest.servico.UsuarioServico;
+import javax.inject.Inject;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.FormParam;
 import javax.ws.rs.GET;
@@ -18,10 +23,16 @@ import javax.ws.rs.core.Response;
  *
  * @author Michel
  */
-@Path("usuario")
+@Path("user")
 @Consumes(MediaType.APPLICATION_JSON)
 @Produces(MediaType.APPLICATION_JSON)
 public class UsuarioRecurso {
+
+    @Inject
+    private UsuarioDAO usuarioDAO;
+
+    @Inject
+    private UsuarioServico usuarioServico;
 
     @GET
     public String teste() {
@@ -38,31 +49,26 @@ public class UsuarioRecurso {
 
             System.out.println("username " + username);
             System.out.println("password " + password);
-            // Authenticate the user using the credentials provided
-            authenticate(username, password);
 
-            // Issue a token for the user
-            String token = issueToken(username);
+            Usuario u = new Usuario();
+            u = usuarioDAO.entrarNoSistema(username, password);
 
-            // Return the token on the response
-            return Response.ok(token).build();
+            DadosUsuario dadosUsuario = new DadosUsuario();
+            dadosUsuario = usuarioServico.prepararDadosDoUsuario(u);
+            
+//            // Authenticate the user using the credentials provided
+//            authenticate(username, password);
+//
+//            // Issue a token for the user
+//            String token = issueToken(username);
+//
+//            // Return the token on the response
+            return Response.ok(dadosUsuario).build();
 
         } catch (Exception e) {
+            System.out.println("erro " + e.getMessage());
             return Response.status(Response.Status.UNAUTHORIZED).build();
         }
-    }
-
-    private void authenticate(String username, String password) throws Exception {
-        // Authenticate against a database, LDAP, file or whatever
-        // Throw an Exception if the credentials are invalid
-        System.out.println("autenticando");
-    }
-
-    private String issueToken(String username) {
-        // Issue a token (can be a random String persisted to a database or a JWT token)
-        // The issued token must be associated to a user
-        // Return the issued token
-        return username;
     }
 
 }

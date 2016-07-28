@@ -6,7 +6,7 @@
 package com.blackzig.defenseagainstrest.DAO;
 
 import com.blackzig.defenseagainstrest.jpa.Transactional;
-import com.blackzig.defenseagainstrest.modelo.Pedido;
+import com.blackzig.defenseagainstrest.modelo.Acesso;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
 
@@ -14,13 +14,15 @@ import javax.persistence.EntityManager;
  *
  * @author Michel
  */
-public class PedidoDAO {
+public class AcessoDAO {
+
     @Inject
     private EntityManager em;
-    
+
     @Transactional
-    public Pedido salvar(Pedido pedido) {
-        em.merge(pedido);
-        return pedido;
-    }    
+    public Acesso salvar(Acesso acesso) {
+        em.merge(acesso);
+        return acesso;
+    }
+
 }
