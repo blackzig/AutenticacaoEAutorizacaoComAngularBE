@@ -36,11 +36,12 @@ public class UsuarioServico {
     
     private void gravarChaveDeAcesso(DadosUsuario dadosUsuario){
         Acesso acesso = new Acesso();
+        acesso.setEmail(dadosUsuario.getEmail());
         acesso.setChave(dadosUsuario.getChave());
         acesso.setPapel(dadosUsuario.getPapel());
         acessoDAO.salvar(acesso);
     }
-
+    
     public String gerarChave() {
 
         String chave = "";

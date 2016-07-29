@@ -24,5 +24,13 @@ public class AcessoDAO {
         em.merge(acesso);
         return acesso;
     }
+    
+    public Acesso autorizarAcao(String papel, String chave) {
+        return (Acesso) em.createQuery("select a from Acesso a where "
+                + "a.papel = :papel and a.chave = :chave")
+                .setParameter("papel", papel)
+                .setParameter("chave", chave)
+                .getSingleResult();
+    }    
 
 }

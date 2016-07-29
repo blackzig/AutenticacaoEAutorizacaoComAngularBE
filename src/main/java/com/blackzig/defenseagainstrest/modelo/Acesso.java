@@ -7,8 +7,6 @@ package com.blackzig.defenseagainstrest.modelo;
 
 import java.io.Serializable;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 /**
@@ -18,20 +16,29 @@ import javax.persistence.Id;
 @Entity
 public class Acesso implements Serializable {
 
+//    @GeneratedValue(strategy = GenerationType.IDENTITY)
+//    private Long id;
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private String email;
     
     private String chave;
     private String papel;
 
-    public Long getId() {
-        return id;
+    public String getEmail() {
+        return email;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setEmail(String email) {
+        this.email = email;
     }
+//
+//    public Long getId() {
+//        return id;
+//    }
+//
+//    public void setId(Long id) {
+//        this.id = id;
+//    }
 
     public String getChave() {
         return chave;
@@ -48,5 +55,5 @@ public class Acesso implements Serializable {
     public void setPapel(String papel) {
         this.papel = papel;
     }
-    
+
 }

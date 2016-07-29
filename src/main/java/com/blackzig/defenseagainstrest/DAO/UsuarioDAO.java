@@ -5,6 +5,7 @@
  */
 package com.blackzig.defenseagainstrest.DAO;
 
+import com.blackzig.defenseagainstrest.jpa.Transactional;
 import com.blackzig.defenseagainstrest.modelo.Usuario;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
@@ -24,6 +25,13 @@ public class UsuarioDAO {
                 .setParameter("email", email)
                 .setParameter("senha", senha)
                 .getSingleResult();
+    }
+
+    @Transactional
+    public void excluirChaveLigadaAoUsuario(String chave) {
+        em.createQuery("DELETE FROM Acesso c where c.chave = :chave ")
+                .setParameter("chave", chave)
+                .executeUpdate();
     }
 
 }

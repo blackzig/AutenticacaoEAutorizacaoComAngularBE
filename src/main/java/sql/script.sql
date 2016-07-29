@@ -89,13 +89,13 @@ CREATE TABLE usuario_papel_usuario
   );  
 
 /* acesso */
-CREATE SEQUENCE public.acesso_id;
+CREATE SEQUENCE public.acesso_email;
 CREATE TABLE acesso
   (
-    id      BIGINT NOT NULL DEFAULT nextval('public.acesso_id'),
+    email   VARCHAR(100) unique NOT NULL,
     chave   VARCHAR(10) NOT NULL,
     papel   VARCHAR(30) NOT NULL,
-    CONSTRAINT PK_acesso PRIMARY KEY (id)
+    CONSTRAINT PK_acesso PRIMARY KEY (email)
   );  
 
 
