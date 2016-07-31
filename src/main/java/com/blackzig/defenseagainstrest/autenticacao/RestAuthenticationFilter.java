@@ -17,10 +17,17 @@ import javax.servlet.http.HttpServletResponse;
 public class RestAuthenticationFilter implements javax.servlet.Filter {
 
     public static final String AUTHENTICATION_HEADER = "Authorization";
-    
+
     @Override
     public void doFilter(ServletRequest request, ServletResponse response,
             FilterChain filter) throws IOException, ServletException {
+
+        HttpServletResponse res = (HttpServletResponse) response;
+        res.setHeader("Access-Control-Allow-Origin", "*");
+        //headers.add("Access-Control-Allow-Origin", "http://podcastpedia.org"); //allows CORS requests only coming from podcastpedia.org		
+        res.setHeader("Access-Control-Allow-Methods", "GET, POST, DELETE, PUT");
+        res.setHeader("Access-Control-Allow-Headers", "X-Requested-With, Content-Type, X-Codingpedia");
+
         if (request instanceof HttpServletRequest) {
             HttpServletRequest httpServletRequest = (HttpServletRequest) request;
             String authCredentials = httpServletRequest
@@ -31,8 +38,8 @@ public class RestAuthenticationFilter implements javax.servlet.Filter {
 
             boolean authenticationStatus = authenticationService
                     .authenticate(authCredentials);
-            System.out.println("authenticationStatus  " + authenticationStatus);  
-                    
+            System.out.println("authenticationStatus  " + authenticationStatus);
+
             if (authenticationStatus) {
                 filter.doFilter(request, response);
             } else if (response instanceof HttpServletResponse) {

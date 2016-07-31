@@ -6,7 +6,7 @@
         <servlet-class>org.glassfish.jersey.servlet.ServletContainer</servlet-class>
         <init-param>
             <param-name>jersey.config.server.provider.packages</param-name>
-            <param-value>com.blackzig.defenseagainstrest.recurso</param-value>
+            <param-value>com.blackzig.defenseagainstrest.recurso</param-value>   
         </init-param>
         <load-on-startup>1</load-on-startup>
     </servlet>
@@ -16,67 +16,75 @@
     </servlet-mapping>
     
     <filter>
-        <filter-name>AuthenticationFilter</filter-name>
-        <filter-class>com.blackzig.defenseagainstrest.autenticacao.RestAuthenticationFilter</filter-class>
-    </filter>
-    <filter-mapping>
-        <filter-name>AuthenticationFilter</filter-name>
-        <url-pattern>/*</url-pattern>
-    </filter-mapping>
-  <!--   
-  <filter>
-    <filter-name>AuthenticationFilter</filter-name>
-    <filter-class>com.blackzig.defenseagainstrest.seguranca.RestAuthenticationFilter</filter-class>
-  </filter>
-  <filter-mapping>
-  <filter-name>AuthenticationFilter</filter-name>
-    <url-pattern>/*</url-pattern>
-  </filter-mapping>
-    
-    <security-constraint>
-        <web-resource-collection>
-            <web-resource-name>Teste de Segurança</web-resource-name>
-            <url-pattern>/*</url-pattern>
-            <http-method>GET</http-method>
-            <http-method>POST</http-method>
-        </web-resource-collection>
-        <user-data-constraint>
-            <transport-guarantee>CONFIDENTIAL</transport-guarantee>
-        </user-data-constraint>
-    </security-constraint>
-    
-    
-    <filter>
-        <filter-name>AuthenticationFilter</filter-name>
-        <filter-class>br.com.backendegressos.autenticacao.RestAuthenticationFilter</filter-class>
-    </filter>
-    <filter-mapping>
-        <filter-name>AuthenticationFilter</filter-name>
-        <url-pattern>/*</url-pattern>
-    </filter-mapping>
+        <!-- The CORS filter with parameters 
+         http://software.dzhuvinov.com/cors-filter-installation.html-->
+        <filter-name>CORS</filter-name>
+        <filter-class>com.thetransactioncompany.cors.CORSFilter</filter-class>
+		
+        <!-- Note: All parameters are options, if omitted the CORS 
+           Filter will fall back to the respective default values.
+        -->
+        <init-param>
+            <param-name>cors.allowGenericHttpRequests</param-name>
+            <param-value>true</param-value>
+        </init-param>
+		
+        <init-param>
+            <param-name>cors.allowOrigin</param-name>
+            <param-value>*</param-value>
+        </init-param>
+		
+        <init-param>
+            <param-name>cors.allowSubdomains</param-name>
+            <param-value>false</param-value>
+        </init-param>
+		
+        <init-param>
+            <param-name>cors.supportedMethods</param-name>
+            <param-value>GET, HEAD, POST, OPTIONS</param-value>
+        </init-param>
+		
+        <init-param>
+            <param-name>cors.supportedHeaders</param-name>
+            <param-value>*</param-value>
+        </init-param>
+		
+        <init-param>
+            <param-name>cors.exposedHeaders</param-name>
+            <param-value>X-Test-1, X-Test-2</param-value>
+        </init-param>
+		
+        <init-param>
+            <param-name>cors.supportsCredentials</param-name>
+            <param-value>true</param-value>
+        </init-param>
+		
+        <init-param>
+            <param-name>cors.maxAge</param-name>
+            <param-value>3600</param-value>
+        </init-param>
 
-    Como adicionar a camada SSL ?????
+    </filter>
+
+    <filter-mapping>
+        <filter-name>CORS</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+    
+
+    
     <security-constraint>
         <web-resource-collection>
             <web-resource-name>Teste de Segurança</web-resource-name>
             <url-pattern>/*</url-pattern>
             <http-method>GET</http-method>
             <http-method>POST</http-method>
+            <http-method>UPDATE</http-method>
+            <http-method>DELETE</http-method>
         </web-resource-collection>
-        <auth-constraint>
-            <role-name>ADMINISTRADOR</role-name>
-        </auth-constraint>
         <user-data-constraint>
             <transport-guarantee>CONFIDENTIAL</transport-guarantee>
         </user-data-constraint>
     </security-constraint>
-    <login-config>
-        <auth-method>BASIC</auth-method>
-        <realm-name>default</realm-name>
-    </login-config>
-    <security-role>
-        <description/>
-        <role-name>ADMINISTRADOR</role-name>
-    </security-role>
-    -->
+
 </web-app>
