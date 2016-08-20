@@ -23,10 +23,10 @@ public class RestAuthenticationFilter implements javax.servlet.Filter {
             FilterChain filter) throws IOException, ServletException {
 
         HttpServletResponse res = (HttpServletResponse) response;
-        res.setHeader("Access-Control-Allow-Origin", "*");
-        //headers.add("Access-Control-Allow-Origin", "http://podcastpedia.org"); //allows CORS requests only coming from podcastpedia.org		
-        res.setHeader("Access-Control-Allow-Methods", "GET, POST, DELETE, PUT");
+        res.setHeader("Content-Type", "application/json'");
         res.setHeader("Access-Control-Allow-Headers", "X-Requested-With, Content-Type, X-Codingpedia");
+        res.setHeader("Access-Control-Allow-Methods", "GET, POST, DELETE, PUT");
+        res.setHeader("Access-Control-Allow-Origin", "*");
 
         if (request instanceof HttpServletRequest) {
             HttpServletRequest httpServletRequest = (HttpServletRequest) request;

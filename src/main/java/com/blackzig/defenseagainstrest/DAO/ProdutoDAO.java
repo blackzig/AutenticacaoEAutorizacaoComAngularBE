@@ -5,6 +5,7 @@
  */
 package com.blackzig.defenseagainstrest.DAO;
 
+import com.blackzig.defenseagainstrest.jpa.Transactional;
 import com.blackzig.defenseagainstrest.modelo.Produto;
 import java.util.List;
 import javax.inject.Inject;
@@ -21,5 +22,11 @@ public class ProdutoDAO {
 
     public List<Produto> buscarTodos() {
         return em.createQuery("SELECT p FROM Produto p").getResultList();
+    }
+
+    @Transactional
+    public Produto salvar(Produto produto) {
+        em.merge(produto);
+        return produto;
     }
 }
